@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Artefak build Netlify CLI
+.netlify/
+
 # Environment variables
 .env
 

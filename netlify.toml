@@ -1,5 +1,15 @@
 [build]
   functions = "netlify/functions"
+  publish = "public"
+
+# Bundler nft melacak file yang dibaca saat runtime (views EJS &
+# data JSON) dan mempertahankan __dirname — cocok untuk Express + EJS.
+[functions]
+  node_bundler = "nft"
+
+# Pengaman tambahan: pastikan views & data selalu ikut ter-bundle.
+[functions.api]
+  included_files = ["views/**/*.ejs", "data/*.json"]
 
 [[redirects]]
   from = "/*"

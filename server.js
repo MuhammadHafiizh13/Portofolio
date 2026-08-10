@@ -89,21 +89,19 @@ app.use((err, req, res, next) => {
 });
 
 /* ------------------------------------------------------------
- *  7. Jalankan server
+ *  7. Jalankan server (khusus lokal)
  * ------------------------------------------------------------ */
-app.listen(PORT, () => {
-  console.log('============================================');
-  console.log('  🚀 Server portofolio berjalan di:');
-  console.log(`     http://localhost:${PORT}`);
-  console.log('============================================');
-});
-// ... kode server.js kamu di atas ...
-
-// TAMBAHKAN BARIS INI DI PALING BAWAH:
-module.exports = app;
-
-// Pastikan app.listen tetap ada untuk lokal
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// `require.main === module` bernilai true hanya saat file dijalankan
+// langsung (node server.js). Saat server.js di-require oleh Netlify
+// function (netlify/functions/api.js), app.listen TIDAK dijalankan
+// — fungsi tidak boleh membuka port di lingkungan serverless.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log('============================================');
+    console.log('  🚀 Server portofolio berjalan di:');
+    console.log(`     http://localhost:${PORT}`);
+    console.log('============================================');
+  });
 }
+
+module.exports = app;
