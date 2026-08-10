@@ -1,0 +1,23 @@
+{
+  "name": "portofolio-website",
+  "version": "1.0.0",
+  "description": "Website portofolio pribadi - Node.js, Express, EJS, Tailwind CSS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "portofolio",
+    "express",
+    "ejs",
+    "nodejs"
+  ],
+  "author": "Nama Anda",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1"
+  }
+}

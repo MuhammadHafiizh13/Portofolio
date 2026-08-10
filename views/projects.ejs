@@ -1,0 +1,39 @@
+<!-- ============================================================
+     Halaman PORTOFOLIO / PROYEK (views/projects.ejs)
+     Data dari Controller: projects (array dari data/projects.json)
+     ============================================================ -->
+
+<!-- Header halaman -->
+<section class="relative overflow-hidden pt-32 md:pt-36 pb-12">
+  <div class="absolute inset-0 bg-grid opacity-40 dark:opacity-20"></div>
+  <div class="absolute -top-20 right-0 w-80 h-80 bg-violet-500/15 dark:bg-violet-500/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+      Portofolio
+    </span>
+    <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+      Proyek yang Pernah Saya Kerjakan
+    </h1>
+    <p class="mt-4 text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+      Kumpulan proyek yang menunjukkan kemampuan saya dalam membangun aplikasi web — dari backend, database, hingga antarmuka pengguna.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== GRID PROYEK ===================== -->
+<section class="pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% projects.forEach(project => { %>
+      <%- include('partials/projectCard', { project }) %>
+    <% }) %>
+  </div>
+
+  <!-- Pesan jika belum ada proyek (mis. data/projects.json kosong) -->
+  <% if (projects.length === 0) { %>
+    <div class="text-center py-20">
+      <p class="text-5xl">📂</p>
+      <p class="mt-4 text-slate-500 dark:text-slate-400">Belum ada proyek. Tambahkan data pada <code class="text-indigo-600 dark:text-indigo-400">data/projects.json</code></p>
+    </div>
+  <% } %>
+</section>

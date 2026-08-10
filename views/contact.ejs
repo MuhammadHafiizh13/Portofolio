@@ -1,0 +1,140 @@
+<!-- ============================================================
+     Halaman KONTAK (views/contact.ejs)
+     Data dari Controller: alert (objek sukses/error, bisa null)
+     ============================================================ -->
+
+<!-- Header halaman -->
+<section class="relative overflow-hidden pt-32 md:pt-36 pb-12">
+  <div class="absolute inset-0 bg-grid opacity-40 dark:opacity-20"></div>
+  <div class="absolute -top-24 left-1/4 w-96 h-96 bg-indigo-500/15 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Kontak</span>
+    <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">Mari Berkolaborasi 🤝</h1>
+    <p class="mt-4 text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+      Punya pertanyaan, tawaran kerja sama, atau sekadar ingin menyapa? Kirim pesan melalui form di bawah ini.
+    </p>
+  </div>
+</section>
+
+<section class="pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-10">
+  <!-- KIRI: Info kontak -->
+  <div class="lg:col-span-2 space-y-4 reveal">
+    <!-- Kartu info email -->
+    <a href="mailto:<%= profile.email %>" class="group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 transition-all duration-300">
+      <span class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xl text-white shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">✉️</span>
+      <span>
+        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Email</span>
+        <span class="mt-1 block text-sm font-semibold text-slate-800 dark:text-slate-200 break-all"><%= profile.email %></span>
+      </span>
+    </a>
+
+    <!-- Kartu info telepon -->
+    <a href="tel:<%= profile.phone.replace(/[^+\d]/g, '') %>" class="group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 transition-all duration-300">
+      <span class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xl text-white shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">📞</span>
+      <span>
+        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Telepon / WhatsApp</span>
+        <span class="mt-1 block text-sm font-semibold text-slate-800 dark:text-slate-200"><%= profile.phone %></span>
+      </span>
+    </a>
+
+    <!-- Kartu info lokasi -->
+    <div class="group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+      <span class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xl text-white shadow-md shadow-indigo-500/30">📍</span>
+      <span>
+        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Lokasi</span>
+        <span class="mt-1 block text-sm font-semibold text-slate-800 dark:text-slate-200"><%= profile.location %></span>
+      </span>
+    </div>
+
+    <!-- Media sosial -->
+    <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+      <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Media Sosial</p>
+      <div class="flex items-center gap-2">
+        <% Object.values(profile.socials).forEach(social => { %>
+          <a href="<%= social.url %>" target="_blank" rel="noopener noreferrer" aria-label="<%= social.label %>"
+            class="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-white hover:bg-indigo-600 hover:border-indigo-600 hover:-translate-y-0.5 transition-all duration-200">
+            <span class="text-xs font-bold"><%= social.label.charAt(0) %></span>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <!-- KANAN: Form kontak -->
+  <div class="lg:col-span-3 reveal">
+    <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm">
+
+      <!-- Alert sukses/error dari server (setelah POST) -->
+      <% if (alert) { %>
+        <div id="form-alert" class="mb-6 flex items-start justify-between gap-3 rounded-2xl px-5 py-4 text-sm font-medium
+          <%= alert.type === 'success'
+              ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20'
+              : 'bg-rose-50 dark:bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-500/20' %>">
+          <span class="flex items-start gap-2">
+            <span><%= alert.type === 'success' ? '✅' : '⚠️' %></span>
+            <span><%= alert.message %></span>
+          </span>
+          <button type="button" data-close-alert aria-label="Tutup notifikasi" class="shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      <% } %>
+
+      <!-- Form: action=/contact method=POST (diproses server di contactController) -->
+      <form id="contact-form" action="/contact" method="POST" novalidate>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- Nama -->
+          <div>
+            <label for="name" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Nama Lengkap <span class="text-rose-500">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Contoh: Andi Wijaya"
+              class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
+            <p id="name-error" class="hidden mt-1.5 text-xs font-medium text-rose-500">Nama minimal 3 karakter.</p>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Email <span class="text-rose-500">*</span></label>
+            <input type="email" id="email" name="email" placeholder="contoh@email.com"
+              class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
+            <p id="email-error" class="hidden mt-1.5 text-xs font-medium text-rose-500">Format email tidak valid.</p>
+          </div>
+        </div>
+
+        <!-- Subjek (opsional) -->
+        <div class="mt-5">
+          <label for="subject" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Subjek <span class="text-slate-400">(opsional)</span></label>
+          <input type="text" id="subject" name="subject" placeholder="Contoh: Penawaran kerja sama"
+            class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
+        </div>
+
+        <!-- Pesan -->
+        <div class="mt-5">
+          <label for="message" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Pesan <span class="text-rose-500">*</span></label>
+          <textarea id="message" name="message" rows="5" placeholder="Tuliskan pesan Anda di sini..."
+            class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all resize-none"></textarea>
+          <p id="message-error" class="hidden mt-1.5 text-xs font-medium text-rose-500">Pesan minimal 10 karakter.</p>
+        </div>
+
+        <!-- Honeypot: field tersembunyi untuk menjebak bot spam -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website">Jangan diisi</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Tombol kirim -->
+        <button type="submit"
+          class="mt-7 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold hover:shadow-lg hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+          </svg>
+          Kirim Pesan
+        </button>
+
+        <p class="mt-4 text-xs text-slate-400">* Kolom wajib diisi. Pesan Anda akan saya balas secepatnya.</p>
+      </form>
+    </div>
+  </div>
+</section>

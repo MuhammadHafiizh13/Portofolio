@@ -1,0 +1,55 @@
+<!-- ============================================================
+     partials/projectCard.ejs — Kartu proyek (dipakai ulang)
+     Data yang dibutuhkan: `project` (objek dari data/projects.json)
+     Partial ini dipakai di halaman Beranda & halaman Proyek.
+     ============================================================ -->
+<article class="reveal group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+  <!-- Gambar proyek (klik menuju demo) -->
+  <a href="<%= project.demoUrl %>" target="_blank" rel="noopener noreferrer" class="relative block overflow-hidden aspect-[16/10]">
+    <img src="<%= project.image %>" alt="Thumbnail proyek <%= project.title %>"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+    <% if (project.featured) { %>
+      <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/90 dark:bg-slate-900/90 text-indigo-600 dark:text-indigo-400 backdrop-blur">
+        ★ Unggulan
+      </span>
+    <% } %>
+  </a>
+
+  <!-- Isi kartu -->
+  <div class="p-6 flex flex-col flex-1">
+    <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+      <%= project.title %>
+    </h3>
+
+    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">
+      <%= project.description %>
+    </p>
+
+    <!-- Tech stack (chips) -->
+    <div class="mt-4 flex flex-wrap gap-2">
+      <% project.techStack.forEach(tech => { %>
+        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/20">
+          <%= tech %>
+        </span>
+      <% }) %>
+    </div>
+
+    <!-- Tombol Demo & GitHub (mt-auto mendorong tombol ke bawah kartu) -->
+    <div class="mt-auto pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center gap-3">
+      <a href="<%= project.demoUrl %>" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:shadow-md hover:shadow-indigo-500/30 hover:-translate-y-0.5 transition-all duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        </svg>
+        Demo
+      </a>
+      <a href="<%= project.githubUrl %>" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</article>
