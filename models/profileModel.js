@@ -14,12 +14,12 @@
  */
 
 const profile = {
-  name: 'Budi Prasetyo',
-  shortName: 'Budi',
+  name: ' Muhammad Al Hafiizh Ar Raafi',
+  shortName: 'Hafiizh',
   role: 'Full-Stack Web Developer',
   location: 'Jakarta, Indonesia',
-  email: 'halo@budiprasetyo.dev',
-  phone: '+62 812-3456-7890',
+  email: 'muhammadalhafiizh13@gmail.com',
+  phone: '+62 813-1715-3410',
   available: true, // status "Tersedia untuk proyek baru"
 
   // Kalimat-kalimat untuk efek ketikan (typing effect) di halaman Beranda
@@ -31,16 +31,16 @@ const profile = {
 
   // Paragraf latar belakang untuk halaman Tentang Saya
   bio: [
-    'Halo! Saya Budi Prasetyo, seorang Full-Stack Web Developer yang berdomisili di Jakarta. Selama 3 tahun terakhir saya membangun berbagai aplikasi web — mulai dari website company profile, sistem kasir (POS), hingga REST API untuk aplikasi mobile.',
+    'Halo! Saya Muhammad Al Hafiizh Ar Raafi, seorang Full-Stack Web Developer yang berdomisili di Jakarta. Selama 3 tahun terakhir saya membangun berbagai aplikasi web — mulai dari website company profile, sistem kasir (POS), hingga REST API untuk aplikasi mobile.',
     'Saya percaya bahwa kode yang baik adalah kode yang bersih, terstruktur, dan mudah dipelihara. Karena itu saya selalu menerapkan arsitektur MVC, menulis kode yang modular, dan memastikan setiap proyek memiliki dokumentasi yang jelas.',
     'Di luar pekerjaan, saya aktif berbagi ilmu melalui blog dan komunitas developer lokal. Saya juga suka mengeksplorasi teknologi baru agar tetap up-to-date dengan perkembangan industri.'
   ],
 
   // Link media sosial
   socials: {
-    github: { label: 'GitHub', url: 'https://github.com/budiprasetyo' },
+    github: { label: 'GitHub', url: 'https://github.com/MuhammadHafiizh13' },
     linkedin: { label: 'LinkedIn', url: 'https://linkedin.com/in/budiprasetyo' },
-    instagram: { label: 'Instagram', url: 'https://instagram.com/budiprasetyo.dev' }
+    instagram: { label: 'Instagram', url: 'https://www.instagram.com/mhmmdhfizh13/' }
   },
 
   // Hard skills dengan persentase (untuk progress bar di halaman Tentang)
@@ -50,9 +50,10 @@ const profile = {
     { name: 'HTML5 & CSS3', level: 95 },
     { name: 'Tailwind CSS', level: 85 },
     { name: 'MySQL / PostgreSQL', level: 80 },
-    { name: 'MongoDB & Mongoose', level: 75 },
     { name: 'Git & GitHub', level: 85 },
-    { name: 'REST API', level: 82 }
+    { name: 'REST API', level: 82 },
+    { name: 'Dart', level: 80 },
+    { name: 'Flutter', level: 78 }
   ],
 
   // Soft skills dengan deskripsi singkat

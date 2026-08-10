@@ -1,62 +1,22 @@
 [
   {
     "id": 1,
-    "title": "Aplikasi Kasir Toko (POS)",
-    "description": "Sistem point-of-sale untuk toko retail dengan manajemen stok otomatis, laporan penjualan harian, dan cetak struk. Mendukung multi-user dengan role admin dan kasir.",
-    "techStack": ["Node.js", "Express", "MySQL", "EJS", "Tailwind CSS"],
-    "image": "/img/projects/project-1.svg",
-    "demoUrl": "https://demo-kasir.example.com",
-    "githubUrl": "https://github.com/budiprasetyo/aplikasi-kasir-pos",
+    "title": "Aplikasi Quiz Trivia",
+    "description": "Aplikasi kuis trivia interaktif yang dibangun dengan Flutter. Menyajikan berbagai pertanyaan dengan pilihan ganda, skor real-time, dan pengalaman bermain yang responsif di perangkat mobile.",
+    "techStack": ["Flutter", "Dart"],
+    "image": "/img/projects/project-quiz-trivia.svg",
+    "demoUrl": "https://github.com/MuhammadHafiizh13/project-quiz-trivia",
+    "githubUrl": "https://github.com/MuhammadHafiizh13/project-quiz-trivia",
     "featured": true
   },
   {
     "id": 2,
-    "title": "Sistem Manajemen Inventaris",
-    "description": "Aplikasi web untuk mengelola barang masuk/keluar gudang dengan fitur scan barcode, alert stok menipis, serta dashboard rekap data real-time.",
-    "techStack": ["Node.js", "Express", "MongoDB", "Mongoose", "EJS"],
-    "image": "/img/projects/project-2.svg",
-    "demoUrl": "https://demo-inventaris.example.com",
-    "githubUrl": "https://github.com/budiprasetyo/sistem-inventaris",
+    "title": "Website Kapanbeli",
+    "description": "Website yang membantu pengguna menemukan waktu terbaik untuk membeli produk. Dibangun dengan EJS dan JavaScript di sisi server, dengan sentuhan PHP untuk fitur tambahan.",
+    "techStack": ["EJS", "JavaScript", "CSS"],
+    "image": "/img/projects/project-kapanbeli.svg",
+    "demoUrl": "https://github.com/rezyalfarabi/kapanbeli",
+    "githubUrl": "https://github.com/rezyalfarabi/kapanbeli",
     "featured": true
-  },
-  {
-    "id": 3,
-    "title": "REST API Blog & Forum",
-    "description": "Backend REST API untuk platform blog dengan autentikasi JWT, fitur CRUD artikel, komentar, serta role author dan admin. Dilengkapi dokumentasi Postman.",
-    "techStack": ["Node.js", "Express", "JWT", "MongoDB", "Postman"],
-    "image": "/img/projects/project-3.svg",
-    "demoUrl": "https://api-blog.example.com/docs",
-    "githubUrl": "https://github.com/budiprasetyo/rest-api-blog",
-    "featured": true
-  },
-  {
-    "id": 4,
-    "title": "Website Company Profile",
-    "description": "Company profile modern untuk perusahaan konstruksi dengan galeri proyek, form permintaan penawaran, serta optimasi SEO dan kecepatan loading tinggi.",
-    "techStack": ["Express", "EJS", "Tailwind CSS", "JavaScript"],
-    "image": "/img/projects/project-4.svg",
-    "demoUrl": "https://demo-company.example.com",
-    "githubUrl": "https://github.com/budiprasetyo/company-profile",
-    "featured": false
-  },
-  {
-    "id": 5,
-    "title": "Dashboard Analitik Penjualan",
-    "description": "Dashboard interaktif untuk memantau penjualan dengan grafik batang, garis, dan pie. Data diambil dari REST API internal dan di-cache untuk performa.",
-    "techStack": ["Node.js", "Express", "Chart.js", "MySQL", "EJS"],
-    "image": "/img/projects/project-5.svg",
-    "demoUrl": "https://demo-dashboard.example.com",
-    "githubUrl": "https://github.com/budiprasetyo/dashboard-analitik",
-    "featured": false
-  },
-  {
-    "id": 6,
-    "title": "Aplikasi Manajemen Tugas",
-    "description": "Aplikasi to-do list kolaboratif dengan fitur drag-and-drop antar status, reminder via email, dan sinkronisasi data antar perangkat secara real-time.",
-    "techStack": ["Express", "EJS", "MongoDB", "Socket.IO", "Tailwind CSS"],
-    "image": "/img/projects/project-6.svg",
-    "demoUrl": "https://demo-todo.example.com",
-    "githubUrl": "https://github.com/budiprasetyo/manajemen-tugas",
-    "featured": false
   }
 ]
