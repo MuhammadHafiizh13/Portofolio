@@ -23,7 +23,7 @@ const profile = {
   available: true, // status "Tersedia untuk proyek baru"
 
   // Kalimat-kalimat untuk efek ketikan (typing effect) di halaman Beranda
-  typedRoles: ['Full-Stack Web Developer', 'Backend Developer', 'UI/UX Enthusiast'],
+  typedRoles: ['Full-Stack Web Developer AI', 'Backend Developer', 'UI/UX Enthusiast'],
 
   // Tagline singkat yang ditampilkan di Hero section & footer
   tagline:
@@ -51,9 +51,7 @@ const profile = {
     { name: 'Tailwind CSS', level: 85 },
     { name: 'MySQL / PostgreSQL', level: 80 },
     { name: 'Git & GitHub', level: 85 },
-    { name: 'REST API', level: 82 },
-    { name: 'Dart', level: 80 },
-    { name: 'Flutter', level: 78 }
+    { name: 'REST API', level: 82 }
   ],
 
   // Soft skills dengan deskripsi singkat
@@ -66,9 +64,8 @@ const profile = {
 
   // Riwayat pendidikan & pengalaman (timeline di halaman Tentang)
   timeline: [
-    { period: '2024 — Sekarang', title: 'Full-Stack Developer — PT Teknologi Nusantara', desc: 'Mengembangkan sistem internal perusahaan memakai Node.js, Express, dan MySQL.' },
-    { period: '2022 — 2024', title: 'Junior Web Developer — Studio Kreatif Media', desc: 'Membangun website company profile dan toko online untuk berbagai klien UMKM.' },
-    { period: '2018 — 2022', title: 'S1 Teknik Informatika — Universitas Indonesia', desc: 'Lulus dengan predikat cum laude. Aktif di UKM Robotik dan kepanitiaan IT.' }
+    { period: '2025 - sekarang', title: 'Kelas 12', desc: 'Membangun aplikasi berbasis mobile dengan nama trivia menggunakan bahasa dart' },
+    { period: '2025 - 2026', title: 'Kelas 11', desc: 'berkontribusi dalam mengembangkan webseite kapanbeli' }
   ]
 };
 

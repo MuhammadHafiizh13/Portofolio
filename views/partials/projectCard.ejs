@@ -4,8 +4,8 @@
      Partial ini dipakai di halaman Beranda & halaman Proyek.
      ============================================================ -->
 <article class="reveal group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
-  <!-- Gambar proyek (klik menuju demo) -->
-  <a href="<%= project.demoUrl %>" target="_blank" rel="noopener noreferrer" class="relative block overflow-hidden aspect-[16/10]">
+  <!-- Gambar proyek (klik menuju repositori GitHub) -->
+  <a href="<%= project.githubUrl %>" target="_blank" rel="noopener noreferrer" class="relative block overflow-hidden aspect-[16/10]">
     <img src="<%= project.image %>" alt="Thumbnail proyek <%= project.title %>"
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
     <% if (project.featured) { %>
@@ -34,15 +34,8 @@
       <% }) %>
     </div>
 
-    <!-- Tombol Demo & GitHub (mt-auto mendorong tombol ke bawah kartu) -->
+    <!-- Tombol GitHub (mt-auto mendorong tombol ke bawah kartu) -->
     <div class="mt-auto pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center gap-3">
-      <a href="<%= project.demoUrl %>" target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:shadow-md hover:shadow-indigo-500/30 hover:-translate-y-0.5 transition-all duration-200">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-        </svg>
-        Demo
-      </a>
       <a href="<%= project.githubUrl %>" target="_blank" rel="noopener noreferrer"
         class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-200">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">

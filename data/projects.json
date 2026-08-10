@@ -5,7 +5,6 @@
     "description": "Aplikasi kuis trivia interaktif yang dibangun dengan Flutter. Menyajikan berbagai pertanyaan dengan pilihan ganda, skor real-time, dan pengalaman bermain yang responsif di perangkat mobile.",
     "techStack": ["Flutter", "Dart"],
     "image": "/img/projects/project-quiz-trivia.svg",
-    "demoUrl": "https://github.com/MuhammadHafiizh13/project-quiz-trivia",
     "githubUrl": "https://github.com/MuhammadHafiizh13/project-quiz-trivia",
     "featured": true
   },
@@ -15,7 +14,6 @@
     "description": "Website yang membantu pengguna menemukan waktu terbaik untuk membeli produk. Dibangun dengan EJS dan JavaScript di sisi server, dengan sentuhan PHP untuk fitur tambahan.",
     "techStack": ["EJS", "JavaScript", "CSS"],
     "image": "/img/projects/project-kapanbeli.svg",
-    "demoUrl": "https://github.com/rezyalfarabi/kapanbeli",
     "githubUrl": "https://github.com/rezyalfarabi/kapanbeli",
     "featured": true
   }

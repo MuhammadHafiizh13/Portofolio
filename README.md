@@ -27,7 +27,7 @@ Website portofolio pribadi yang dibangun dengan **Node.js**, **Express.js**, **E
 |---|---|
 | **Beranda (`/`)** | Hero section, efek ketikan (typing effect), ringkasan keahlian, 3 proyek unggulan, banner CTA |
 | **Tentang (`/about`)** | Biodata, latar belakang, hard skills (progress bar animasi), soft skills, timeline pendidikan & pengalaman |
-| **Proyek (`/projects`)** | Grid kartu proyek (judul, deskripsi, tech stack, link Demo & GitHub) — data dari `data/projects.json` |
+| **Proyek (`/projects`)** | Grid kartu proyek (judul, deskripsi, tech stack, link GitHub) — data dari `data/projects.json` |
 | **Kontak (`/contact`)** | Form pesan dengan validasi di sisi klien **dan** server, honeypot anti-bot, alert sukses/error |
 | **Global** | Mode terang/gelap (tersimpan di `localStorage`), responsive (mobile-friendly), animasi reveal saat scroll, progress bar scroll, tombol kembali ke atas |
 
@@ -122,7 +122,7 @@ portofolio/
     │   ├── main.js            # Menu mobile, scroll, typing effect, dsb.
     │   └── contact.js         # Validasi form kontak (khusus halaman /contact)
     └── img/
-        ├── avatar.svg         # Ilustrasi avatar
+        ├── ganteng.jpeg       # Foto profil pribadi
         └── projects/          # Thumbnail proyek (SVG placeholder)
 ```
 
@@ -191,7 +191,7 @@ Pola **"redirect setelah POST" (PRG)** dipakai agar data tidak terkirim ulang ke
 | Menu navigasi | `views/partials/header.ejs` |
 | Warna utama (indigo/violet) | Cari class `indigo` & `violet` di `views/` |
 | Teks hero / CTA | `views/index.ejs` |
-| Foto profil | Ganti `public/img/avatar.svg` dengan foto Anda (jpg/png) |
+| Foto profil | Ganti `public/img/ganteng.jpeg` dengan foto Anda (jpg/png) |
 | Thumbnail proyek | Ganti file di `public/img/projects/` |
 
 ---
