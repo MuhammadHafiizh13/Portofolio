@@ -97,3 +97,13 @@ app.listen(PORT, () => {
   console.log(`     http://localhost:${PORT}`);
   console.log('============================================');
 });
+// ... kode server.js kamu di atas ...
+
+// TAMBAHKAN BARIS INI DI PALING BAWAH:
+module.exports = app;
+
+// Pastikan app.listen tetap ada untuk lokal
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
