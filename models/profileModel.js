@@ -39,7 +39,6 @@ const profile = {
   // Link media sosial
   socials: {
     github: { label: 'GitHub', url: 'https://github.com/MuhammadHafiizh13' },
-    linkedin: { label: 'LinkedIn', url: 'https://linkedin.com/in/budiprasetyo' },
     instagram: { label: 'Instagram', url: 'https://www.instagram.com/mhmmdhfizh13/' }
   },
 
