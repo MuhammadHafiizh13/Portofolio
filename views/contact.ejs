@@ -1,139 +1,161 @@
-<!-- ============================================================
-     Halaman KONTAK (views/contact.ejs)
-     Data dari Controller: alert (objek sukses/error, bisa null)
-     ============================================================ -->
+<!-- views/contact.ejs -->
+<%
+  /* Ikon media sosial (garis). Kunci = nama network di profile.socials.
+     Kalau ada network baru, cukup tambahkan path-nya di sini.
+     Bila tidak ada, huruf pertama label tetap dipakai sebagai fallback. */
+  const socialIcons = {
+    github: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22',
+    instagram: 'M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zM16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01'
+  };
 
-<!-- Header halaman -->
+  /* Gaya dasar kartu info & ikon (dipakai berulang di bawah) */
+  const infoCard = 'group flex items-center gap-5 p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/60 dark:bg-white/[0.03] backdrop-blur-xl transition-all duration-300';
+  const infoCardHover = 'hover:border-[#f97316]/50 hover:bg-[#f97316]/5 hover:translate-x-2.5 hover:shadow-lg hover:shadow-orange-500/10';
+  const iconBox = 'w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-[#ff5722] to-[#ff9800] flex items-center justify-center shadow-lg shadow-orange-500/25 group-hover:scale-110 transition-transform';
+  const infoLabel = 'block text-xs font-medium uppercase tracking-[0.1em] text-slate-400 dark:text-[#8b8b8b]';
+  const infoValue = 'mt-1 block text-base font-medium text-slate-800 dark:text-white break-all';
+
+  /* Gaya dasar field form: ikon di dalam kolom + fokus oranye */
+  const fieldLabel = 'block text-sm font-medium text-slate-500 dark:text-[#aaa] mb-2';
+  const fieldIcon = 'absolute left-3.5 w-[18px] h-[18px] fill-none stroke-slate-400 dark:stroke-[#666] stroke-[1.8] pointer-events-none peer-focus:stroke-[#f97316] transition-colors';
+%>
+
+<!-- HEADER -->
 <section class="relative overflow-hidden pt-32 md:pt-36 pb-12">
-  <div class="absolute inset-0 bg-grid opacity-40 dark:opacity-20"></div>
-  <div class="absolute -top-24 left-1/4 w-96 h-96 bg-indigo-500/15 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
-
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Kontak</span>
-    <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">Mari Berkolaborasi 🤝</h1>
-    <p class="mt-4 text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-      Punya pertanyaan, tawaran kerja sama, atau sekadar ingin menyapa? Kirim pesan melalui form di bawah ini.
-    </p>
+  <div class="hero-bg-radial absolute inset-0"></div>
+  <div class="hero-bg-radial absolute inset-0 bg-grid opacity-40"></div>
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <span class="inline-block px-4 py-1.5 rounded-lg text-[10px] font-medium uppercase tracking-[0.2em] bg-[#f97316]/10 text-[#fb923c] border border-[#f97316]/20">Kontak</span>
+    <h1 class="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight text-slate-900 dark:text-[#f4f4f5]">
+      Mari <span class="text-gradient">Berkolaborasi</span>
+    </h1>
+    <p class="mt-4 text-slate-500 dark:text-[#a1a1aa] max-w-xl leading-relaxed">Punya pertanyaan, tawaran kerja sama, atau sekadar ingin menyapa? Kirim pesan melalui form di bawah ini.</p>
   </div>
 </section>
 
-<section class="pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-10">
+<!-- GRID: INFO KONTAK + FORM -->
+<section class="pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.5fr] gap-10 lg:gap-12 items-start">
+
   <!-- KIRI: Info kontak -->
-  <div class="lg:col-span-2 space-y-4 reveal">
-    <!-- Kartu info email -->
-    <a href="mailto:<%= profile.email %>" class="group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 transition-all duration-300">
-      <span class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xl text-white shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">✉️</span>
+  <div class="space-y-4 reveal">
+    <a href="mailto:<%= profile.email %>" class="<%= infoCard %> <%= infoCardHover %>">
+      <span class="<%= iconBox %>">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 fill-white" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
+      </span>
       <span>
-        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Email</span>
-        <span class="mt-1 block text-sm font-semibold text-slate-800 dark:text-slate-200 break-all"><%= profile.email %></span>
+        <span class="<%= infoLabel %>">Email</span>
+        <span class="<%= infoValue %>"><%= profile.email %></span>
       </span>
     </a>
 
-    <!-- Kartu info telepon -->
-    <a href="tel:<%= profile.phone.replace(/[^+\d]/g, '') %>" class="group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 transition-all duration-300">
-      <span class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xl text-white shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">📞</span>
+    <a href="tel:<%= profile.phone.replace(/[^+\d]/g, '') %>" class="<%= infoCard %> <%= infoCardHover %>">
+      <span class="<%= iconBox %>">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 fill-white" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" /></svg>
+      </span>
       <span>
-        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Telepon / WhatsApp</span>
-        <span class="mt-1 block text-sm font-semibold text-slate-800 dark:text-slate-200"><%= profile.phone %></span>
+        <span class="<%= infoLabel %>">Telepon / WhatsApp</span>
+        <span class="<%= infoValue %>"><%= profile.phone %></span>
       </span>
     </a>
 
-    <!-- Kartu info lokasi -->
-    <div class="group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-      <span class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-xl text-white shadow-md shadow-indigo-500/30">📍</span>
+    <div class="<%= infoCard %>">
+      <span class="<%= iconBox %>">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 fill-white" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" /></svg>
+      </span>
       <span>
-        <span class="block text-xs font-bold uppercase tracking-wider text-slate-400">Lokasi</span>
-        <span class="mt-1 block text-sm font-semibold text-slate-800 dark:text-slate-200"><%= profile.location %></span>
+        <span class="<%= infoLabel %>">Lokasi</span>
+        <span class="<%= infoValue %>"><%= profile.location %></span>
       </span>
     </div>
 
-    <!-- Media sosial -->
-    <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-      <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Media Sosial</p>
-      <div class="flex items-center gap-2">
-        <% Object.values(profile.socials).forEach(social => { %>
+    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/60 dark:bg-white/[0.03] backdrop-blur-xl">
+      <p class="<%= infoLabel %> mb-3">Media Sosial</p>
+      <div class="flex items-center gap-4">
+        <% Object.entries(profile.socials).forEach(([key, social]) => { %>
           <a href="<%= social.url %>" target="_blank" rel="noopener noreferrer" aria-label="<%= social.label %>"
-            class="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-white hover:bg-indigo-600 hover:border-indigo-600 hover:-translate-y-0.5 transition-all duration-200">
-            <span class="text-xs font-bold"><%= social.label.charAt(0) %></span>
+            class="w-11 h-11 rounded-full flex items-center justify-center border border-slate-200 dark:border-[#333] text-slate-400 dark:text-[#8b8b8b] hover:bg-[#f97316] hover:border-[#f97316] hover:text-white hover:-translate-y-1 transition-all duration-300">
+            <% if (socialIcons[key]) { %>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="<%= socialIcons[key] %>" /></svg>
+            <% } else { %>
+              <span class="text-xs font-bold"><%= social.label.charAt(0) %></span>
+            <% } %>
           </a>
         <% }) %>
       </div>
     </div>
   </div>
 
-  <!-- KANAN: Form kontak -->
-  <div class="lg:col-span-3 reveal">
-    <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm">
-
-      <!-- Alert sukses/error dari server (setelah POST) -->
+  <!-- KANAN: Form -->
+  <div class="reveal">
+    <div class="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] backdrop-blur-xl p-6 sm:p-10 shadow-[0_20px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
       <% if (alert) { %>
-        <div id="form-alert" class="mb-6 flex items-start justify-between gap-3 rounded-2xl px-5 py-4 text-sm font-medium
-          <%= alert.type === 'success'
-              ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20'
-              : 'bg-rose-50 dark:bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-500/20' %>">
-          <span class="flex items-start gap-2">
-            <span><%= alert.type === 'success' ? '✅' : '⚠️' %></span>
+        <div id="form-alert" class="mb-6 flex items-start justify-between gap-3 rounded-xl px-5 py-4 text-sm font-medium
+          <%= alert.type === 'success' ? 'bg-[#10b981]/10 text-[#059669] dark:text-[#34d399] border border-[#10b981]/20' : 'bg-[#ef4444]/10 text-[#dc2626] dark:text-[#f87171] border border-[#ef4444]/20' %>">
+          <span class="flex items-start gap-2.5">
+            <% if (alert.type === 'success') { %>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 mt-px" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg>
+            <% } else { %>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 mt-px" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><path d="M12 9v4M12 17h.01" /></svg>
+            <% } %>
             <span><%= alert.message %></span>
           </span>
-          <button type="button" data-close-alert aria-label="Tutup notifikasi" class="shrink-0 opacity-60 hover:opacity-100 transition-opacity">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+          <button type="button" data-close-alert aria-label="Tutup" class="shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
           </button>
         </div>
       <% } %>
 
-      <!-- Form: action=/contact method=POST (diproses server di contactController) -->
       <form id="contact-form" action="/contact" method="POST" novalidate>
-        <div class="grid sm:grid-cols-2 gap-5">
-          <!-- Nama -->
-          <div>
-            <label for="name" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Nama Lengkap <span class="text-rose-500">*</span></label>
+        <div>
+          <label for="name" class="<%= fieldLabel %>">Nama Lengkap <span class="text-[#ef4444]">*</span></label>
+          <div class="relative">
             <input type="text" id="name" name="name" placeholder="Contoh: Andi Wijaya"
-              class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
-            <p id="name-error" class="hidden mt-1.5 text-xs font-medium text-rose-500">Nama minimal 3 karakter.</p>
+              class="peer w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-300 dark:border-zinc-800 bg-slate-50 dark:bg-[#1a1a1a] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 input-focus outline-none" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="<%= fieldIcon %> top-1/2 -translate-y-1/2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" /></svg>
           </div>
+          <p id="name-error" class="hidden mt-1.5 text-xs font-medium text-[#dc2626] dark:text-[#f87171]">Nama minimal 3 karakter.</p>
+        </div>
 
-          <!-- Email -->
-          <div>
-            <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Email <span class="text-rose-500">*</span></label>
+        <div class="mt-6">
+          <label for="email" class="<%= fieldLabel %>">Email <span class="text-[#ef4444]">*</span></label>
+          <div class="relative">
             <input type="email" id="email" name="email" placeholder="contoh@email.com"
-              class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
-            <p id="email-error" class="hidden mt-1.5 text-xs font-medium text-rose-500">Format email tidak valid.</p>
+              class="peer w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-300 dark:border-zinc-800 bg-slate-50 dark:bg-[#1a1a1a] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 input-focus outline-none" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="<%= fieldIcon %> top-1/2 -translate-y-1/2" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6" /></svg>
+          </div>
+          <p id="email-error" class="hidden mt-1.5 text-xs font-medium text-[#dc2626] dark:text-[#f87171]">Format email tidak valid.</p>
+        </div>
+
+        <div class="mt-6">
+          <label for="subject" class="<%= fieldLabel %>">Subjek <span class="text-slate-400 dark:text-zinc-600">(opsional)</span></label>
+          <div class="relative">
+            <input type="text" id="subject" name="subject" placeholder="Contoh: Penawaran kerja sama"
+              class="peer w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-300 dark:border-zinc-800 bg-slate-50 dark:bg-[#1a1a1a] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 input-focus outline-none" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="<%= fieldIcon %> top-1/2 -translate-y-1/2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
           </div>
         </div>
 
-        <!-- Subjek (opsional) -->
-        <div class="mt-5">
-          <label for="subject" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Subjek <span class="text-slate-400">(opsional)</span></label>
-          <input type="text" id="subject" name="subject" placeholder="Contoh: Penawaran kerja sama"
-            class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all" />
+        <div class="mt-6">
+          <label for="message" class="<%= fieldLabel %>">Pesan <span class="text-[#ef4444]">*</span></label>
+          <div class="relative">
+            <textarea id="message" name="message" rows="5" placeholder="Tuliskan pesan Anda di sini..."
+              class="peer w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-300 dark:border-zinc-800 bg-slate-50 dark:bg-[#1a1a1a] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 input-focus outline-none resize-none"></textarea>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="<%= fieldIcon %> top-4" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+          </div>
+          <p id="message-error" class="hidden mt-1.5 text-xs font-medium text-[#dc2626] dark:text-[#f87171]">Pesan minimal 10 karakter.</p>
         </div>
 
-        <!-- Pesan -->
-        <div class="mt-5">
-          <label for="message" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Pesan <span class="text-rose-500">*</span></label>
-          <textarea id="message" name="message" rows="5" placeholder="Tuliskan pesan Anda di sini..."
-            class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all resize-none"></textarea>
-          <p id="message-error" class="hidden mt-1.5 text-xs font-medium text-rose-500">Pesan minimal 10 karakter.</p>
-        </div>
-
-        <!-- Honeypot: field tersembunyi untuk menjebak bot spam -->
         <div class="hidden" aria-hidden="true">
           <label for="website">Jangan diisi</label>
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
         </div>
 
-        <!-- Tombol kirim -->
         <button type="submit"
-          class="mt-7 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold hover:shadow-lg hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-          </svg>
+          class="btn-shimmer mt-8 w-full inline-flex items-center justify-center gap-2.5 py-4 rounded-xl bg-gradient-to-r from-[#ff5722] to-[#ff9800] text-white text-base font-bold shadow-[0_10px_20px_rgba(255,87,34,0.2)] hover:-translate-y-0.5 hover:shadow-[0_15px_30px_rgba(255,87,34,0.4)] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
           Kirim Pesan
+          <svg viewBox="0 0 24 24" class="w-5 h-5 fill-white" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
         </button>
-
-        <p class="mt-4 text-xs text-slate-400">* Kolom wajib diisi. Pesan Anda akan saya balas secepatnya.</p>
+        <p class="mt-4 text-xs text-slate-400 dark:text-[#52525b]">* Kolom wajib diisi. Pesan Anda akan saya balas secepatnya.</p>
       </form>
     </div>
   </div>

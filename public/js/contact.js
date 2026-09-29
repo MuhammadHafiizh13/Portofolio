@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const markInvalid = (input, invalid) => {
-    input.classList.toggle('border-rose-500', invalid);
+    input.classList.toggle('border-[#ef4444]', invalid);
     input.classList.toggle('border-slate-300', !invalid);
+    input.classList.toggle('dark:border-zinc-800', !invalid);
   };
 
   // Hapus tanda error setiap kali pengguna mengetik

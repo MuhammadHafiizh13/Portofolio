@@ -3,67 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Judul halaman dinamis: dikirim dari Controller (mis. "Beranda", "Tentang Saya") -->
   <title><%= title %> | <%= profile.name %></title>
   <meta name="description" content="<%= metaDescription %>" />
-
-  <!-- Favicon sederhana (emoji) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
-
-  <!-- Google Fonts: Plus Jakarta Sans (font modern, khas Indonesia) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS via CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Konfigurasi Tailwind:
-    // - darkMode: 'class' => mode gelap dikendalikan oleh class "dark" di <html>
-    // - fontFamily sans  => pakai Plus Jakarta Sans di seluruh halaman
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
           }
         }
       }
     };
   </script>
-
-  <!-- CSS kustom (efek tambahan yang sulit dibuat pakai Tailwind) -->
+  <link rel="stylesheet" href="/css/theme.css" />
   <link rel="stylesheet" href="/css/style.css" />
-
-  <!-- theme.js dipanggil di <head> agar mode gelap/terang
-       diterapkan SEBELUM halaman dirender (mencegah kedipan putih/FOUC) -->
+  <% if (showSplash) { %>
+    <link rel="stylesheet" href="/css/loading-screen.css" />
+  <% } %>
   <script src="/js/theme.js"></script>
 </head>
 
-<body class="bg-white text-slate-700 dark:bg-slate-950 dark:text-slate-300 font-sans antialiased">
-  <!-- Header: navigasi + progress bar (partial) -->
+<body class="bg-white dark:bg-[#09090b] text-slate-700 dark:text-zinc-300 font-sans antialiased">
+  <% if (showSplash) { %><%- include('partials/loading-screen') %><% } %>
   <%- include('partials/header') %>
-
-  <!-- Isi halaman: dikirim dari setiap halaman (index.ejs, about.ejs, dll.) -->
   <%- body %>
-
-  <!-- Footer (partial) -->
   <%- include('partials/footer') %>
 
-  <!-- Tombol kembali ke atas -->
   <button id="back-to-top" type="button" aria-label="Kembali ke atas"
-    class="hidden fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/30 hover:scale-110 transition-transform duration-200 items-center justify-center">
+    class="hidden fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-[#f97316] text-white shadow-lg shadow-orange-500/30 hover:scale-110 transition-transform duration-200 items-center justify-center">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
     </svg>
   </button>
 
-  <!-- Script interaksi global (menu mobile, animasi scroll, dll.) -->
-  <script src="/js/main.js"></script>
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] pointer-events-none"></div>
 
-  <!-- Script khusus halaman kontak (validasi form) -->
+  <script src="/js/main.js"></script>
+  <% if (showSplash) { %>
+    <script src="/js/loading-screen.js"></script>
+  <% } %>
   <% if (activePage === '/contact') { %>
     <script src="/js/contact.js"></script>
   <% } %>

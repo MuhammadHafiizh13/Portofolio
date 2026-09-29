@@ -56,12 +56,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* ------------------------------------------------------------
  *  3. Middleware custom — variabel global untuk semua view
  * ------------------------------------------------------------ */
+
+// Cookie penanda bahwa splash screen sudah pernah ditampilkan.
+// Sengaja TANPA Max-Age => ini "session cookie": otomatis hilang
+// saat browser ditutup total, sehingga splash muncul lagi di
+// kunjungan berikutnya.
+const SPLASH_COOKIE = 'splash_seen';
+
+function hasSplashCookie(req) {
+  const cookies = req.headers.cookie || '';
+  return new RegExp('(?:^|;\\s*)' + SPLASH_COOKIE + '=1(?:;|$)').test(cookies);
+}
+
 app.use((req, res, next) => {
   res.locals.profile = profileModel.getProfile();          // data profil (nama, sosmed, dll)
   res.locals.currentYear = new Date().getFullYear();       // tahun berjalan untuk footer
   res.locals.activePage = req.path.replace(/\/+$/, '') || '/'; // path aktif utk menu nav
   res.locals.metaDescription =
     'Portofolio pribadi ' + res.locals.profile.name + ' — ' + res.locals.profile.role + '.';
+
+  // Splash hanya pada kunjungan pertama di sesi ini. Request berikutnya
+  // (pindah halaman / refresh) tidak merender splash sama sekali,
+  // jadi tidak ada kedipan dan halaman langsung tampil.
+  res.locals.showSplash = !hasSplashCookie(req);
+  if (res.locals.showSplash) {
+    res.setHeader('Set-Cookie', `${SPLASH_COOKIE}=1; Path=/; SameSite=Lax`);
+  }
+
   next();
 });
 

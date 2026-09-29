@@ -1,48 +1,41 @@
-<!-- ============================================================
-     partials/projectCard.ejs — Kartu proyek (dipakai ulang)
-     Data yang dibutuhkan: `project` (objek dari data/projects.json)
-     Partial ini dipakai di halaman Beranda & halaman Proyek.
-     ============================================================ -->
-<article class="reveal group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
-  <!-- Gambar proyek (klik menuju repositori GitHub) -->
-  <a href="<%= project.githubUrl %>" target="_blank" rel="noopener noreferrer" class="relative block overflow-hidden aspect-[16/10]">
+<!-- partials/projectCard.ejs -->
+<article class="reveal group rounded-2xl overflow-hidden border border-slate-200 dark:border-white/[0.06] bg-white dark:bg-[rgba(24,24,27,0.5)] backdrop-blur-xl hover:border-[#f97316]/20 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+  <a href="<%= project.githubUrl %>" target="_blank" rel="noopener noreferrer" class="relative block overflow-hidden aspect-[16/10] project-img-wrap">
     <img src="<%= project.image %>" alt="Thumbnail proyek <%= project.title %>"
-      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+      class="w-full h-full object-cover transition-transform duration-700" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
     <% if (project.featured) { %>
-      <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/90 dark:bg-slate-900/90 text-indigo-600 dark:text-indigo-400 backdrop-blur">
+      <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-medium uppercase tracking-[0.15em] bg-[#f97316]/20 text-[#fb923c] border border-[#f97316]/30 backdrop-blur-sm">
         ★ Unggulan
       </span>
     <% } %>
   </a>
 
-  <!-- Isi kartu -->
   <div class="p-6 flex flex-col flex-1">
-    <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+    <h3 class="text-lg font-semibold text-slate-900 dark:text-[#f4f4f5] group-hover:text-[#fb923c] transition-colors">
       <%= project.title %>
     </h3>
-
-    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3">
+    <p class="mt-2 text-sm text-slate-500 dark:text-[#a1a1aa] leading-relaxed line-clamp-3">
       <%= project.description %>
     </p>
-
-    <!-- Tech stack (chips) -->
     <div class="mt-4 flex flex-wrap gap-2">
       <% project.techStack.forEach(tech => { %>
-        <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/20">
+        <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium text-slate-500 dark:text-[#71717a] bg-slate-100 dark:bg-zinc-800/50">
           <%= tech %>
         </span>
       <% }) %>
     </div>
-
-    <!-- Tombol GitHub (mt-auto mendorong tombol ke bawah kartu) -->
-    <div class="mt-auto pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center gap-3">
+    <div class="mt-auto pt-5 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
       <a href="<%= project.githubUrl %>" target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-200">
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-white/[0.06] text-slate-500 dark:text-[#71717a] hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 transition-all duration-200">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
         </svg>
         GitHub
       </a>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-slate-300 dark:text-[#52525b] group-hover:text-[#f97316] group-hover:translate-x-1 transition-all duration-200">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+      </svg>
     </div>
   </div>
 </article>

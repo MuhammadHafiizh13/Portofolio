@@ -1,55 +1,40 @@
-<!-- ============================================================
-     partials/header.ejs — Navigasi utama (dipakai di semua halaman)
-     Data yang tersedia:
-       - profile.activePage  : path halaman aktif (dari server.js)
-       - profile.shortName   : nama singkat untuk logo
-     ============================================================ -->
+<!-- partials/header.ejs — Navbar -->
 <%
-  // Daftar menu navigasi (label + path)
   const navLinks = [
     { label: 'Beranda', path: '/' },
     { label: 'Tentang', path: '/about' },
     { label: 'Proyek',  path: '/projects' },
     { label: 'Kontak',  path: '/contact' }
   ];
-
-  // Fungsi kecil untuk menentukan class link (aktif vs tidak aktif)
   function linkClass(path) {
     return activePage === path
-      ? 'text-indigo-600 dark:text-indigo-400 font-semibold bg-indigo-50 dark:bg-indigo-500/10'
-      : 'text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800/60';
+      ? 'text-[#f97316] font-medium nav-link active'
+      : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white nav-link';
   }
 %>
 
-<!-- Progress bar scroll (lebar diatur oleh main.js) -->
-<div id="scroll-progress" class="fixed top-0 left-0 h-1 w-0 z-[70] bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500"></div>
+<div id="scroll-progress" class="fixed top-0 left-0 h-[2px] w-0 z-[70] bg-gradient-to-r from-[#f97316] via-[#fb923c] to-[#ef4444]"></div>
 
-<!-- Navbar: fixed di atas, transparan + blur -->
-<header id="navbar" class="fixed top-0 inset-x-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md transition-all duration-300">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20">
-      <!-- Logo -->
-      <a href="/" class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white hover:opacity-80 transition-opacity">
-        <%= profile.shortName %><span class="text-indigo-600 dark:text-indigo-400">.</span>
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 h-16 bg-white/80 dark:bg-[rgba(9,9,11,0.8)] backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <div class="flex items-center justify-between h-full">
+      <a href="/" class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white hover:opacity-80 transition-opacity">
+        <%= profile.shortName %><span class="text-[#f97316]">.</span>
       </a>
 
-      <!-- Menu desktop -->
       <ul class="hidden md:flex items-center gap-1">
         <% navLinks.forEach(link => { %>
           <li>
-            <a href="<%= link.path %>"
-               class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 <%= linkClass(link.path) %>">
+            <a href="<%= link.path %>" class="px-4 py-2 rounded-lg text-sm transition-all duration-200 <%= linkClass(link.path) %>">
               <%= link.label %>
             </a>
           </li>
         <% }) %>
       </ul>
 
-      <!-- Tombol aksi: toggle tema + tombol Hire Me + menu mobile -->
       <div class="flex items-center gap-2">
-        <!-- Toggle tema terang/gelap -->
-        <button id="theme-toggle" type="button" aria-label="Ganti mode terang/gelap"
-          class="p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+        <button id="theme-toggle" type="button" aria-label="Ganti tema"
+          class="p-2.5 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
           <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 hidden">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
           </svg>
@@ -58,14 +43,12 @@
           </svg>
         </button>
 
-        <!-- CTA desktop -->
-        <a href="/contact" class="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-sm font-semibold hover:shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-0.5 transition-all duration-300">
+        <a href="/contact" class="hidden md:inline-flex items-center px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-[#f4f4f5] text-white dark:text-[#18181b] text-sm font-semibold hover:bg-slate-800 dark:hover:bg-white hover:shadow-lg transition-all duration-300">
           Hire Me
         </a>
 
-        <!-- Tombol hamburger (mobile) -->
         <button id="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false"
-          class="md:hidden p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          class="md:hidden p-2.5 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
           <svg id="icon-burger" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
@@ -75,24 +58,43 @@
         </button>
       </div>
     </div>
-
-    <!-- Menu mobile (dropdown) -->
-    <div id="mobile-menu" class="md:hidden hidden pb-4">
-      <ul class="space-y-1 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2 shadow-xl">
-        <% navLinks.forEach(link => { %>
-          <li>
-            <a href="<%= link.path %>"
-               class="block px-4 py-3 rounded-xl text-sm font-medium transition-colors <%= linkClass(link.path) %>">
-              <%= link.label %>
-            </a>
-          </li>
-        <% }) %>
-        <li>
-          <a href="/contact" class="block px-4 py-3 rounded-xl text-sm font-semibold text-center bg-gradient-to-r from-indigo-600 to-violet-600 text-white">
-            Hire Me
-          </a>
-        </li>
-      </ul>
-    </div>
   </nav>
 </header>
+
+<div id="mobile-overlay" class="mobile-overlay"></div>
+
+<div id="mobile-panel" class="mobile-panel">
+  <div class="flex items-center justify-between mb-8">
+    <span class="text-lg font-semibold text-slate-900 dark:text-white">Menu</span>
+    <button id="mobile-close-btn" type="button" class="p-2 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <ul class="space-y-1">
+    <% navLinks.forEach(link => { %>
+      <li>
+        <a href="<%= link.path %>"
+           class="block px-4 py-3 rounded-xl text-sm font-medium transition-colors <%= activePage === link.path ? 'text-[#f97316] bg-[#f97316]/5 dark:bg-[#f97316]/10' : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5' %>">
+          <%= link.label %>
+        </a>
+      </li>
+    <% }) %>
+    <li class="pt-3">
+      <a href="/contact" class="block px-4 py-3 rounded-xl text-sm font-semibold text-center bg-[#f97316] text-white">
+        Hire Me
+      </a>
+    </li>
+  </ul>
+</div>
+
+<script>
+  document.getElementById('mobile-close-btn')?.addEventListener('click', () => {
+    document.getElementById('mobile-panel')?.classList.remove('active');
+    document.getElementById('mobile-overlay')?.classList.remove('active');
+    document.getElementById('icon-burger')?.classList.remove('hidden');
+    document.getElementById('icon-close')?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+</script>

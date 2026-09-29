@@ -1,0 +1,53 @@
+/* ============================================================
+   theme.css — CSS Custom Properties for Light/Dark Mode
+   ============================================================ */
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f8f9fa;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --text: #1e293b;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+  --text-4: #cbd5e1;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(249, 115, 22, 0.3);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-border: rgba(0, 0, 0, 0.06);
+  --nav-scrolled-bg: rgba(255, 255, 255, 0.95);
+  --section-alt: #f8f9fa;
+  --icon-box-bg: rgba(249, 115, 22, 0.08);
+  --icon-box-border: rgba(249, 115, 22, 0.15);
+  --scrollbar: #e2e8f0;
+  --scrollbar-hover: #cbd5e1;
+  --skill-bar: #e2e8f0;
+  --input-bg: #f8fafc;
+  --input-border: #e2e8f0;
+  --mobile-panel-bg: #ffffff;
+  --mobile-panel-border: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --bg: #09090b;
+  --bg-alt: #0c0c0e;
+  --bg-card: rgba(24, 24, 27, 0.5);
+  --text: #f4f4f5;
+  --text-2: #a1a1aa;
+  --text-3: #71717a;
+  --text-4: #52525b;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(249, 115, 22, 0.3);
+  --nav-bg: rgba(9, 9, 11, 0.8);
+  --nav-border: rgba(255, 255, 255, 0.05);
+  --nav-scrolled-bg: rgba(9, 9, 11, 0.95);
+  --section-alt: #0c0c0e;
+  --icon-box-bg: rgba(249, 115, 22, 0.1);
+  --icon-box-border: rgba(249, 115, 22, 0.2);
+  --scrollbar: #27272a;
+  --scrollbar-hover: #3f3f46;
+  --skill-bar: #27272a;
+  --input-bg: rgba(24, 24, 27, 0.8);
+  --input-border: #27272a;
+  --mobile-panel-bg: #09090b;
+  --mobile-panel-border: rgba(255, 255, 255, 0.06);
+}
